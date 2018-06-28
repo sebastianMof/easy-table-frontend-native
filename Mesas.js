@@ -34,8 +34,6 @@ export default class Mesas extends Component {
             },})
             .then(response => response.json())
             .then(responseJSON => {
-                console.log('Respuesta backend', responseJSON);
-                
                 if (responseJSON.status !== 1) {
                                    
                         //mensaje de error al cargar mesas del local
@@ -61,7 +59,6 @@ export default class Mesas extends Component {
             <View style={{flex: 1 ,alignItems: 'center',
                 justifyContent: 'center'}}>
                 
-
                 <Button
                     onPress={ this.loadMesas}
                     title="Ver Mesas"
@@ -69,8 +66,6 @@ export default class Mesas extends Component {
                 />
 
                 { mesasLoaded ? 
-                    
-
                     this.state.mesas.map((mesa, key)=>(
                      <Text key={key} > 
                         NUMERO { mesa.numero } 
@@ -79,13 +74,7 @@ export default class Mesas extends Component {
                     ))
                     :
                     null
-                }
-
-                
-               
-               
-
-                
+                }                
             </View>
         );
     }
