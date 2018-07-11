@@ -11,6 +11,7 @@ import Form_registro from './Form_registro.js';
 import Form_mesa from './Form_mesa.js';
 import Form_login from './Form_login.js';
 import Form_liberar from './Form_liberar.js';
+import Form_delete_user from './Form_delete_user';
 
 export default class App extends React.Component {
 
@@ -19,8 +20,8 @@ export default class App extends React.Component {
             <ScrollView>
                 <View style={styles.container}>
 
-                    <Form_liberar />
-                    <Reservas />
+                    <Form_delete_user />
+                    <Usuarios />
                 
                  </View>
              </ScrollView>
