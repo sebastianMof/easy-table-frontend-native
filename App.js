@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Button, Alert} from 'react-native';
 
+//data
 import Mesas from './Mesas.js';
 import Reservas from './Reservas.js';
 import Usuarios from './Usuarios.js';
-
+//forms
 import Form_reserva_numero from './Form_reserva_numero.js';
 import Form_reserva_capacidad from './Form_reserva_capacidad.js';
 import Form_registro from './Form_registro.js';

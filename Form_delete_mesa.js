@@ -61,8 +61,6 @@ export default class Form_login extends React.Component{
 
     render(){
         return(
-
-         
             <View style={styles.container}>
                 
                 <FormLabel>Borrar Mesa</FormLabel>
@@ -86,7 +84,6 @@ export default class Form_login extends React.Component{
                 value={this.state.numero}
                 onChangeText={(numero) => this.setState({numero})}
                 />
-
 
                 <Button
                     onPress={this.onLoginSubmit}
