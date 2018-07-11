@@ -1,12 +1,13 @@
-import React from 'react';
-import './App.css';
-import urlcodeJson from 'urlcode-json';
+import React, {Component} from 'react';
+import { StyleSheet, Text, View,FlatList, Image, Button, Alert, AppRegistry, TextInput, TouchableHighLight} from 'react-native';
+import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
+import DatePicker from 'react-native-datepicker';
 
 
-import {BrowserRouter as Router, Link, NavLink, Redirect} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+const fetchURL ='192.168.0.6';
 
-export default class Form_reserva_capacidad extends React.Component{
+
+export default class Form_reserva_numero extends React.Component{
     
     constructor(props){
         super(props);
@@ -14,8 +15,8 @@ export default class Form_reserva_capacidad extends React.Component{
             rut: "",
             fecha_inicio_reserva: "",
             fecha_fin_reserva:"",
-            capacidad: "",
-            mesa:"",
+            mesa: "",
+            capacidad:"",
             hora_inicio_reserva:"",
             hora_fin_reserva:""
         };
@@ -27,44 +28,37 @@ export default class Form_reserva_capacidad extends React.Component{
     //Crear usuario
     crearReserva(event) {
         event.preventDefault()
-        const { rut, fecha_inicio_reserva, fecha_fin_reserva, capacidad, hora_fin_reserva, hora_inicio_reserva} = this.state
+        const { rut, fecha_inicio_reserva, fecha_fin_reserva, mesa, hora_fin_reserva, hora_inicio_reserva} = this.state
         const data = {
             rut : this.state.rut,
             fecha_inicio_reserva : this.state.fecha_inicio_reserva,
             fecha_fin_reserva : this.state.fecha_fin_reserva,
             hora_inicio_reserva : this.state.hora_inicio_reserva,
             hora_fin_reserva : this.state.hora_fin_reserva,
-            capacidad : this.state.capacidad,
-            mesa:''
-
+            capacidad: this.state.capacidad,
+            mesa : '',
+            
         }
 
-        if (rut && fecha_inicio_reserva && fecha_fin_reserva &&hora_inicio_reserva&&hora_fin_reserva && capacidad ) { 
+        if (rut && fecha_inicio_reserva && fecha_fin_reserva &&hora_inicio_reserva&&hora_fin_reserva && mesa) { 
 
-            console.log(JSON.stringify(data));
-            fetch('http://localhost:5555/reserva/', {
+            fetch('http://'+fetchURL+':5555/reserva/', {
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body : 
                     JSON.stringify(data),
-
                 })
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log('Respuesta backend', responseJSON);
-                   
                     if (responseJSON.status !== 1) {
-                        console.log('D:');
+                        console.log('OHMYGOOOD');
                         //mensaje de no disponibilidad
-                    
                      } else{
                         //redireccionar a mensaje de creado
-                        console.log(':D');
-                        
+                        console.log(':D');      
                      }
-                  
                 }).catch(e =>{
                   console.log(e);
                 })
@@ -73,57 +67,148 @@ export default class Form_reserva_capacidad extends React.Component{
 
     render(){
         return(
-        <div className="Reservar">
-            <form method="post">
-                <h2> Reservar
-                </h2>
-                <br />
-
-                FECHA INICIO RESERVA <input type ="date"
-                    min="2018-06-21" max="2019-06-21"
-                    required="required"
-                    value={this.state.fecha_inicio_reserva}
-                    onChange={e => this.setState({fecha_inicio_reserva: e.target.value})}/>
-                <br />
-                HORA INICIO RESERVA <input type ="time"
-                    required="required"
-                    value={this.state.hora_inicio_reserva}
-                    onChange={e => this.setState({hora_inicio_reserva: e.target.value})}/>
-                <br />
-
-                FECHA FIN RESERVA <input type ="date"
-                    required="required"
-                    value={this.state.fecha_fin_reserva}
-                    onChange={e => this.setState({fecha_fin_reserva: e.target.value})}/>
-                <br />
-                HORA FIN RESERVA <input type ="time"
-                    required="required"
-                    value={this.state.hora_fin_reserva}
-                    onChange={e => this.setState({hora_fin_reserva: e.target.value})}/>
-                <br />
-
-                RUT <input type ="text"
-                    placeholder="12345678-9" required="required"
-                    value={this.state.rut}
-                    onChange={e => this.setState({rut: e.target.value})}/>
-                <br />
-
-                CAPACIDAD <input type ="text"
-                    placeholder="4" required="required"
-                    value={this.state.capacidad}
-                    onChange={e => this.setState({capacidad: e.target.value})}/>
-                <br />
+            <View style={styles.container}>
                 
-
+                <FormLabel>Reserva por capacidad</FormLabel>
                 
-                <button 
-                    href="reserva" 
-                    onClick={this.crearReserva} 
-                    className="btn btn-primary btn-block btn-large">Crear Reserva  
-                </button>
+                <TextInput  
+                style = {styles.input}
+                placeholder="11111111-1" 
+                value={this.state.rut}
+                onChangeText={(rut) => this.setState({rut})}
+                />
 
-            </form>
-        </div>
+                <TextInput  
+                style = {styles.input}
+                placeholder="Capacidad" 
+                value={this.state.capacidad}
+                onChangeText={(capacidad) => this.setState({capacidad})}
+                />
+                
+                <DatePicker
+                    style={styles.dateInput}
+                    date={this.state.fecha_inicio_reserva}
+                    mode="date"
+                    placeholder="Fecha inicio reserva"
+                    format="YYYY-MM-DD"
+                    minDate="2018-06-01"
+                    maxDate="2019-06-01"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(fecha_inicio_reserva) => {this.setState({fecha_inicio_reserva})}}
+                />
+
+                <DatePicker
+                    style={styles.dateInput}
+                    date={this.state.fecha_fin_reserva}
+                    mode="date"
+                    placeholder="Fecha fin reserva"
+                    format="YYYY-MM-DD"
+                    minDate="2018-06-01"
+                    maxDate="2019-06-01"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(fecha_fin_reserva) => {this.setState({fecha_fin_reserva})}}
+                />
+
+                <DatePicker
+                    style={styles.dateInput}
+                    date={this.state.hora_inicio_reserva}
+                    mode="time"
+                    placeholder="Hora inicio reserva"
+                    format="HH:mm"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(hora_inicio_reserva) => {this.setState({hora_inicio_reserva})}}
+                />
+
+                <DatePicker
+                    style={styles.dateInput}
+                    date={this.state.hora_fin_reserva}
+                    mode="time"
+                    placeholder="Hora fin reserva"
+                    format="HH:mm"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(hora_fin_reserva) => {this.setState({hora_fin_reserva})}}
+                />
+
+                <Button
+                    onPress={this.crearReserva}
+                    title="crear Reserva"
+                />               
+            </View>
+
         );
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        backgroundColor: '#fff',
+        marginVertical:40
+    },
+    input: {
+        height: 40,
+        backgroundColor: '#fff',
+        borderColor: '#ccc',
+        borderWidth: 2,
+        marginBottom: 20,
+        paddingLeft:15,
+        paddingRight:15
+    },
+    dateInput:{
+        width: 330,
+        height: 40,
+        backgroundColor: '#fff',
+        marginBottom: 20,
+    }
+});

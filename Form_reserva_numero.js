@@ -41,7 +41,6 @@ export default class Form_reserva_numero extends React.Component{
 
         if (rut && fecha_inicio_reserva && fecha_fin_reserva &&hora_inicio_reserva&&hora_fin_reserva && mesa) { 
 
-            console.log(JSON.stringify(data));
             fetch('http://'+fetchURL+':5555/reserva/', {
                 method:'POST',
                 headers: {
@@ -49,7 +48,6 @@ export default class Form_reserva_numero extends React.Component{
                 },
                 body : 
                     JSON.stringify(data),
-
                 })
                 .then(response => response.json())
                 .then(responseJSON => {
@@ -60,7 +58,6 @@ export default class Form_reserva_numero extends React.Component{
                         //redireccionar a mensaje de creado
                         console.log(':D');      
                      }
-                  
                 }).catch(e =>{
                   console.log(e);
                 })
@@ -192,7 +189,6 @@ export default class Form_reserva_numero extends React.Component{
         );
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         flex:1,
