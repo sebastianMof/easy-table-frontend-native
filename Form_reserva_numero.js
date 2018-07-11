@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,FlatList, Image, Button, Alert} from 'react-native';
-import { List, ListItem } from 'react-native-elements';
-import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
+import { StyleSheet, Text, View,FlatList, Image, Button, Alert, AppRegistry, TextInput, TouchableHighLight} from 'react-native';
+import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
+import DatePicker from 'react-native-datepicker';
 
 
 const fetchURL ='192.168.0.6';
@@ -69,16 +69,122 @@ export default class Form_reserva_numero extends React.Component{
 
     render(){
         return(
-            <View style={{flex: 1 ,alignItems: 'center',
-                justifyContent: 'center'}}>
+            <View style={styles.container}>
                 
-                <FormLabel>NUMERO DE MESA</FormLabel>
-                <FormInput onChangeText={e => this.setState({mesa: e.target.value})}/>
-                <FormValidationMessage>{'Campo requerido'}</FormValidationMessage>
-              
+                <FormLabel>Reserva por número de mesa</FormLabel>
+                
+                <TextInput  
+                style = {styles.input}
+                placeholder="11111111-1" 
+                value={this.state.rut}
+                onChangeText={(rut) => this.setState({rut})}
+                />
+
+                <TextInput  
+                style = {styles.input}
+                placeholder="Número de mesa" 
+                value={this.state.mesa}
+                onChangeText={(mesa) => this.setState({mesa})}
+                />
+                
+                <DatePicker
+                    style={styles.dateInput}
+                    date={this.state.fecha_inicio_reserva}
+                    mode="date"
+                    placeholder="Fecha inicio reserva"
+                    format="YYYY-MM-DD"
+                    minDate="2018-06-01"
+                    maxDate="2019-06-01"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(fecha_inicio_reserva) => {this.setState({fecha_inicio_reserva})}}
+                />
+
+                <DatePicker
+                    style={styles.dateInput}
+                    date={this.state.fecha_fin_reserva}
+                    mode="date"
+                    placeholder="Fecha fin reserva"
+                    format="YYYY-MM-DD"
+                    minDate="2018-06-01"
+                    maxDate="2019-06-01"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(fecha_fin_reserva) => {this.setState({fecha_fin_reserva})}}
+                />
+
+                <DatePicker
+                    style={styles.dateInput}
+                    date={this.state.hora_inicio_reserva}
+                    mode="time"
+                    placeholder="Hora inicio reserva"
+                    format="HH:mm"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(hora_inicio_reserva) => {this.setState({hora_inicio_reserva})}}
+                />
+
+                <DatePicker
+                    style={styles.dateInput}
+                    date={this.state.hora_fin_reserva}
+                    mode="time"
+                    placeholder="Hora fin reserva"
+                    format="HH:mm"
+                    confirmBtnText="Confirmar"
+                    cancelBtnText="Cancelar"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(hora_fin_reserva) => {this.setState({hora_fin_reserva})}}
+                />
 
                 <Button
-                    onPress={ this.crearReserva}
+                    onPress={this.crearReserva}
                     title="crear Reserva"
                 />               
             </View>
@@ -86,3 +192,26 @@ export default class Form_reserva_numero extends React.Component{
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        backgroundColor: '#fff',
+        marginVertical:40
+    },
+    input: {
+        height: 40,
+        backgroundColor: '#fff',
+        borderColor: '#ccc',
+        borderWidth: 2,
+        marginBottom: 20,
+        paddingLeft:15,
+        paddingRight:15
+    },
+    dateInput:{
+        width: 330,
+        height: 40,
+        backgroundColor: '#fff',
+        marginBottom: 20,
+    }
+});

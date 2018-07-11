@@ -13,25 +13,26 @@ export default class App extends React.Component {
     render() {
         return (
             <ScrollView>
-                <View style={{flex: 1 , 
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginVertical:50}}>
+                <View style={styles.container}>
 
                     <Form_reserva_numero />
+                    <Reservas />
+                    <Mesas />
                     
                 
                  </View>
              </ScrollView>
         );
       }
-    }
+}
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: '#fff',  
+        marginBottom: 20,
+        marginVertical:20,
+        paddingLeft:15,
+        paddingRight:15
     },
 });
