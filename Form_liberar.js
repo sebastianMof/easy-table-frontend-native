@@ -1,11 +1,8 @@
-import React from 'react';
-import './App.css';
-import urlcodeJson from 'urlcode-json';
-import moment from 'moment';
+import React, {Component} from 'react';
+import { StyleSheet, Text, View,FlatList, Image, Button, Alert, AppRegistry, TextInput, TouchableHighLight} from 'react-native';
+import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 
-
-import {BrowserRouter as Router, Link, NavLink, Redirect} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+const fetchURL ='192.168.43.47';
 
 export default class Form_liberar extends React.Component{
     
@@ -35,8 +32,8 @@ export default class Form_liberar extends React.Component{
 
         if (rut && password && id) { 
 
-            console.log(JSON.stringify(data));
-            fetch('http://localhost:5555/reserva/libera', {
+
+            fetch('http://'+fetchURL+':5555/reserva/libera', {
                 method:'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -67,37 +64,52 @@ export default class Form_liberar extends React.Component{
 
     render(){
         return(
-        <div className="Liberar">
-            <form method="post">
-                <h2> Liberar Reserva
-                </h2>
-                <br />
-
-                RUT <input type ="text"
-                    placeholder="12345678-9" required="required"
-                    value={this.state.rut}
-                    onChange={e => this.setState({rut: e.target.value})}/>
-                <br />
-                CONTRASEÑA <input type ="password"
-                    placeholder="password" required="required"
-                    value={this.state.password}
-                    onChange={e => this.setState({password: e.target.value})}/>
-                <br />
-                ID DE RESERVA <input type ="text"
-                    placeholder="7" required="required"
-                    value={this.state.id}
-                    onChange={e => this.setState({id: e.target.value})}/>
-                <br />
-
+            <View style={styles.container}>
                 
-                <button 
-                    href="reserva" 
-                    onClick={this.liberarReserva} 
-                    className="btn btn-primary btn-block btn-large">Liberar Reserva  
-                </button>
+                <FormLabel>Liberar Reserva</FormLabel>
+                
+                <TextInput  
+                style = {styles.input}
+                placeholder="11111111-1" 
+                value={this.state.rut}
+                onChangeText={(rut) => this.setState({rut})}
+                />
+                <TextInput 
+                secureTextEntry={true}
+                style = {styles.input}
+                placeholder="Contraseña" 
+                value={this.state.password}
+                onChangeText={(password) => this.setState({password})}
+                />
+                <TextInput  
+                style = {styles.input}
+                placeholder="ID de reserva" 
+                value={this.state.id}
+                onChangeText={(id) => this.setState({id})}
+                />
 
-            </form>
-        </div>
+                <Button
+                    onPress={this.liberarReserva}
+                    title="Liberar"
+                />               
+            </View>
+
         );
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        backgroundColor: '#fff',
+        marginVertical:40
+    },
+    input: {
+        height: 40,
+        backgroundColor: '#fff',
+        borderColor: '#ccc',
+        borderWidth: 2,
+        marginBottom: 20,
+        paddingLeft:15,
+        paddingRight:15
+    }
+});
