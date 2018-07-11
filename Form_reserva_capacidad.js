@@ -4,7 +4,7 @@ import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'reac
 import DatePicker from 'react-native-datepicker';
 
 
-const fetchURL ='192.168.0.6';
+const fetchURL ='192.168.43.47';
 
 
 export default class Form_reserva_numero extends React.Component{
@@ -28,19 +28,20 @@ export default class Form_reserva_numero extends React.Component{
     //Crear usuario
     crearReserva(event) {
         event.preventDefault()
-        const { rut, fecha_inicio_reserva, fecha_fin_reserva, mesa, hora_fin_reserva, hora_inicio_reserva} = this.state
+        const { rut, fecha_inicio_reserva, fecha_fin_reserva, capacidad, hora_fin_reserva, hora_inicio_reserva} = this.state
         const data = {
             rut : this.state.rut,
             fecha_inicio_reserva : this.state.fecha_inicio_reserva,
             fecha_fin_reserva : this.state.fecha_fin_reserva,
             hora_inicio_reserva : this.state.hora_inicio_reserva,
             hora_fin_reserva : this.state.hora_fin_reserva,
-            capacidad: this.state.capacidad,
             mesa : '',
+            capacidad: this.state.capacidad
+            
             
         }
 
-        if (rut && fecha_inicio_reserva && fecha_fin_reserva &&hora_inicio_reserva&&hora_fin_reserva && mesa) { 
+        if (rut && fecha_inicio_reserva && fecha_fin_reserva &&hora_inicio_reserva&&hora_fin_reserva && capacidad) { 
 
             fetch('http://'+fetchURL+':5555/reserva/', {
                 method:'POST',

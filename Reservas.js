@@ -4,7 +4,7 @@ import { List, ListItem } from 'react-native-elements'
 
 import {reserva} from './reserva';
 
-const fetchURL ='192.168.0.6';
+const fetchURL ='192.168.43.47';
 
 export default class Reservas extends Component {
     constructor(props) {

@@ -1,9 +1,8 @@
-import React from 'react';
-import './App.css';
-import urlcodeJson from 'urlcode-json';
-import {BrowserRouter as Router, Link, NavLink, Redirect} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+import React, {Component} from 'react';
+import { StyleSheet, Text, View,FlatList, Image, Button, Alert, AppRegistry, TextInput, TouchableHighLight} from 'react-native';
+import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 
+const fetchURL ='192.168.43.47';
 
 export default class Form_registro extends React.Component{
     
@@ -37,8 +36,7 @@ export default class Form_registro extends React.Component{
 
         if (rut && password && nombre && apellido &&email) { 
 
-            console.log(JSON.stringify(data));
-            fetch('http://localhost:5555/usuario/', {
+            fetch('http://'+fetchURL+':5555/usuario/', {
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -49,8 +47,7 @@ export default class Form_registro extends React.Component{
                 })
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log('Respuesta backend', responseJSON);
-                   
+   
                     if (responseJSON.status !== 1) {
                         console.log('OHMYGOOOD');
                     
@@ -69,49 +66,65 @@ export default class Form_registro extends React.Component{
 
     render(){
         return(
-        <div className="Registrarse">
-            <form  method="post">
-                <h2> Registrarse
-                </h2>
+            <View style={styles.container}>
+                
+                <FormLabel>Registro</FormLabel>
+                
+                <TextInput  
+                style = {styles.input}
+                placeholder="11111111-1" 
+                value={this.state.rut}
+                onChangeText={(rut) => this.setState({rut})}
+                />
+                <TextInput  
+                style = {styles.input}
+                placeholder="Nombre" 
+                value={this.state.nombre}
+                onChangeText={(nombre) => this.setState({nombre})}
+                />
+                <TextInput  
+                style = {styles.input}
+                placeholder="Apellido" 
+                value={this.state.apellido}
+                onChangeText={(apellido) => this.setState({apellido})}
+                />
+                <TextInput  
+                style = {styles.input}
+                placeholder="correo@mail.com" 
+                value={this.state.email}
+                onChangeText={(email) => this.setState({email})}
+                />
+                <TextInput 
+                secureTextEntry={true}
+                style = {styles.input}
+                placeholder="Contraseña" 
+                value={this.state.password}
+                onChangeText={(password) => this.setState({password})}
+                />
 
-                <br />
-                RUT <input type ="text"
-                    placeholder="12345678-9" required="required"
-                    value={this.state.rut}
-                    onChange={e => this.setState({rut: e.target.value})}/>
-                <br />
-                NOMBRE <input type ="text"
-                    placeholder="nombre" required="required"
-                    value={this.state.nombre}
-                    onChange={e => this.setState({nombre: e.target.value})}/>
-                <br />
-                APELLIDO <input type ="text"
-                    placeholder="apellido" required="required"
-                    value={this.state.apellido}
-                    onChange={e => this.setState({apellido: e.target.value})}/>
-                <br />
-                EMAIL <input type ="email"
-                    placeholder="email" required="required"
-                    value={this.state.email}
-                    onChange={e => this.setState({email: e.target.value})}/>
-                <br />
-                CONTRASEÑA <input type="password"
-                    placeholder="password" required="required"
-                    value={this.state.password}
-                    onChange={e => this.setState({password: e.target.value})}/>
-                <br />
-                <br />
-                <button 
-                    href="usuario" 
-                    onClick={this.crearUsuario} 
-                    className="btn btn-primary btn-block btn-large">Registrarse  
-                </button>
-                {
-                    this.state.loginStatus ? (<Redirect to='/' />) : <div></div>
-                }
+                <Button
+                    onPress={this.crearUsuario}
+                    title="Registrarse"
+                />               
+            </View>
 
-            </form>
-        </div>
         );
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        backgroundColor: '#fff',
+        marginVertical:40
+    },
+    input: {
+        height: 40,
+        backgroundColor: '#fff',
+        borderColor: '#ccc',
+        borderWidth: 2,
+        marginBottom: 20,
+        paddingLeft:15,
+        paddingRight:15
+    }
+});
+

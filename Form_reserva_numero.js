@@ -3,9 +3,7 @@ import { StyleSheet, Text, View,FlatList, Image, Button, Alert, AppRegistry, Tex
 import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
 
-
-const fetchURL ='192.168.0.6';
-
+const fetchURL ='192.168.43.47';
 
 export default class Form_reserva_numero extends React.Component{
     
@@ -37,6 +35,7 @@ export default class Form_reserva_numero extends React.Component{
             hora_fin_reserva : this.state.hora_fin_reserva,
             mesa : this.state.mesa,
             capacidad:''
+
         }
 
         if (rut && fecha_inicio_reserva && fecha_fin_reserva &&hora_inicio_reserva&&hora_fin_reserva && mesa) { 

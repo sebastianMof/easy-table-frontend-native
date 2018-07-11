@@ -7,6 +7,7 @@ import Usuarios from './Usuarios.js';
 
 import Form_reserva_numero from './Form_reserva_numero.js';
 import Form_reserva_capacidad from './Form_reserva_capacidad.js';
+import Form_registro from './Form_registro.js';
 
 export default class App extends React.Component {
 
@@ -15,11 +16,8 @@ export default class App extends React.Component {
             <ScrollView>
                 <View style={styles.container}>
 
-                    <Form_reserva_capacidad />
-                    <Reservas />
-                    <Mesas />
+                    <Form_registro />
                     <Usuarios />
-                    
                 
                  </View>
              </ScrollView>
