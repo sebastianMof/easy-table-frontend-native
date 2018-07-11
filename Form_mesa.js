@@ -63,7 +63,7 @@ export default class Form_mesa extends React.Component{
         return(
             <View style={styles.container}>
                 
-                <FormLabel>Registro</FormLabel>
+                <FormLabel>Crear Mesa</FormLabel>
                 
                 <TextInput  
                 style = {styles.input}

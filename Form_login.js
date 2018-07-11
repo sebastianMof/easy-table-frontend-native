@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
-import urlcodeJson from 'urlcode-json';
-import {BrowserRouter as Router, Link, NavLink, Redirect} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+import React, {Component} from 'react';
+import { StyleSheet, Text, View,FlatList, Image, Button, Alert, AppRegistry, TextInput, TouchableHighLight} from 'react-native';
+import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
+
+const fetchURL ='192.168.43.47';
 
 
 export default class Form_login extends React.Component{
@@ -23,13 +23,14 @@ export default class Form_login extends React.Component{
     onLoginSubmit(event) {
         event.preventDefault()
         const { rut, password , loginStatus} = this.state
-        var str_1 = urlcodeJson.encode( { 
+        var str_1 = { 
             "rut" : this.state.rut , 
             "password" : this.state.password 
-            } , true );
+            };
+
        
         if (rut && password) { 
-          fetch('http://localhost:5555/usuario/login?' + str_1 ,{
+          fetch('http://'+fetchURL+':5555/usuario/login?' + 'rut='+str_1.rut+'&'+'password='+str_1.password ,{
                 method:'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -56,53 +57,58 @@ export default class Form_login extends React.Component{
         }
     }
 
-
-
     render(){
         const {tipo_usuario, loginStatus} = this.state;
         return(
-        
-        <div className="Iniciarsesion">
-            
-           {loginStatus ?
-            <h2>
-            Sesión Iniciada como {this.state.tipo_usuario}
-            </h2>
-            
-            :
+            <View style={styles.container}>
+                {loginStatus ?
 
-            <form method="get">
-                <h2> Iniciar sesión 
-                </h2>
+                    <View>
+                        <Text>
+                        Sesión Iniciada como {this.state.tipo_usuario}
+                        </Text>
+                    </View>
 
-                <br />
-                RUT <input type ="text"
-                    placeholder="12345678-9" required="required"
-                    value={this.state.rut}
-                    onChange={e => this.setState({rut: e.target.value})}/>
-                <br />
-                CONTRASEÑA <input type="password"
-                    placeholder="password" required="required"
-                    value={this.state.password}
-                    onChange={e => this.setState({password: e.target.value})}/>
-                <br /> 
-                <br />
-                <button href="usuario" 
-                    onClick={this.onLoginSubmit}
-                    className="btn btn-primary btn-block btn-large">Continuar
-                
-                </button>
-
-            </form>
-            
-
-
-           }
-
-
-                        
-        </div>
+                    :
+                    <View>
+                        <FormLabel>Iniciar sesión</FormLabel>
+                        <TextInput  
+                        style = {styles.input}
+                        placeholder="11111111-1" 
+                        value={this.state.rut}
+                        onChangeText={(rut) => this.setState({rut})}
+                        />
+                        <TextInput 
+                        secureTextEntry={true}
+                        style = {styles.input}
+                        placeholder="Contraseña" 
+                        value={this.state.password}
+                        onChangeText={(password) => this.setState({password})}
+                        />
+                        <Button
+                            onPress={this.onLoginSubmit}
+                            title="Iniciar"
+                        />  
+                    </View>    
+                }
+            </View>  
 
         );
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        backgroundColor: '#fff',
+        marginVertical:40
+    },
+    input: {
+        height: 40,
+        backgroundColor: '#fff',
+        borderColor: '#ccc',
+        borderWidth: 2,
+        marginBottom: 20,
+        paddingLeft:15,
+        paddingRight:15
+    }
+});
