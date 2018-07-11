@@ -77,12 +77,8 @@ export default class Reservas extends Component {
             },})
             .then(response => response.json())
             .then(responseJSON => {
-                console.log('Respuesta backend', responseJSON);
-                
                 if (responseJSON.status !== 1) {
-                      
-                        //mensaje de error al cargar reservas del local
-                    
+                        //mensaje de error al cargar reservas del local        
                 } else{
                         this.setState({    
                             reservas: responseJSON.data,

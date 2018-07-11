@@ -3,7 +3,9 @@ import { StyleSheet, Text, View, Image, ScrollView, Button, Alert} from 'react-n
 
 import Mesas from './Mesas.js';
 import Reservas from './Reservas.js';
-import Usuarios from './Usuarios.js'
+import Usuarios from './Usuarios.js';
+
+import Form_reserva_numero from './Form_reserva_numero.js';
 
 
 export default class App extends React.Component {
@@ -16,7 +18,7 @@ export default class App extends React.Component {
                     justifyContent: 'center',
                     marginVertical:50}}>
 
-                    <Usuarios />
+                    <Form_reserva_numero />
                     
                 
                  </View>
