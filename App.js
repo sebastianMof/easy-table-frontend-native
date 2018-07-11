@@ -13,6 +13,7 @@ import Form_login from './Form_login.js';
 import Form_liberar from './Form_liberar.js';
 import Form_delete_user from './Form_delete_user';
 import Form_delete_reserva from './Form_delete_reserva';
+import Form_delete_mesa from './Form_delete_mesa';
 
 export default class App extends React.Component {
 
@@ -21,8 +22,8 @@ export default class App extends React.Component {
             <ScrollView>
                 <View style={styles.container}>
 
-                    <Form_delete_reserva />
-                    <Reservas />
+                    <Form_delete_mesa />
+                    <Mesas />
                 
                  </View>
              </ScrollView>
