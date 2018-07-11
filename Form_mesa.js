@@ -1,7 +1,8 @@
-import React from 'react';
-import './App.css';
-import urlcodeJson from 'urlcode-json';
+import React, {Component} from 'react';
+import { StyleSheet, Text, View,FlatList, Image, Button, Alert, AppRegistry, TextInput, TouchableHighLight} from 'react-native';
+import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 
+const fetchURL ='192.168.43.47';
 
 export default class Form_mesa extends React.Component{
     
@@ -31,8 +32,7 @@ export default class Form_mesa extends React.Component{
 
         if (rut && password && numero && capacidad) { 
 
-            console.log(JSON.stringify(data));
-            fetch('http://localhost:5555/mesa/', {
+            fetch('http://'+fetchURL+':5555/mesa/', {
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -43,9 +43,9 @@ export default class Form_mesa extends React.Component{
                 })
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log('Respuesta backend', responseJSON);
                    
                     if (responseJSON.status !== 1) {
+                        console.log('OHMYGOOOD'); 
                         //mensaje de no disponibilidad
                     
                      } else{
@@ -61,40 +61,58 @@ export default class Form_mesa extends React.Component{
 
     render(){
         return(
-        <div className="Reservar">
-            <form method="post">
-                <h2> Crear Mesa
-                </h2>
-                <br />
-                RUT <input type ="text"
-                    placeholder="12345678-9" required="required"
-                    value={this.state.rut}
-                    onChange={e => this.setState({rut: e.target.value})}/>
-                <br />
-                CONTRASEÑA <input type="password"
-                    placeholder="password" required="required"
-                    value={this.state.password}
-                    onChange={e => this.setState({password: e.target.value})}/>
-                <br /> 
-                NUMERO DE MESA <input type ="text"
-                    placeholder="6" required="required"
-                    value={this.state.numero}
-                    onChange={e => this.setState({numero: e.target.value})}/>
-                <br />
-                CAPACIDAD <input type ="text"
-                    placeholder="6" required="required"
-                    value={this.state.capacidad}
-                    onChange={e => this.setState({capacidad: e.target.value})}/>
-                <br />
+            <View style={styles.container}>
+                
+                <FormLabel>Registro</FormLabel>
+                
+                <TextInput  
+                style = {styles.input}
+                placeholder="11111111-1" 
+                value={this.state.rut}
+                onChangeText={(rut) => this.setState({rut})}
+                />
+                <TextInput 
+                secureTextEntry={true}
+                style = {styles.input}
+                placeholder="Contraseña" 
+                value={this.state.password}
+                onChangeText={(password) => this.setState({password})}
+                />
+                <TextInput  
+                style = {styles.input}
+                placeholder="Número de mesa" 
+                value={this.state.numero}
+                onChangeText={(numero) => this.setState({numero})}
+                />
+                <TextInput  
+                style = {styles.input}
+                placeholder="Capacidad" 
+                value={this.state.capacidad}
+                onChangeText={(capacidad) => this.setState({capacidad})}
+                />
 
-                <button 
-                    href="mesa" 
-                    onClick={this.crearMesa} 
-                    className="btn btn-primary btn-block btn-large">Crear Mesa 
-                </button>
+                <Button
+                    onPress={this.crearMesa}
+                    title="Crear Mesa"
+                />               
+            </View>
 
-            </form>
-        </div>
         );
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        backgroundColor: '#fff',
+        marginVertical:40
+    },
+    input: {
+        height: 40,
+        backgroundColor: '#fff',
+        borderColor: '#ccc',
+        borderWidth: 2,
+        marginBottom: 20,
+        paddingLeft:15,
+        paddingRight:15
+    }
+});
