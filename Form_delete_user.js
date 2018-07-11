@@ -59,10 +59,9 @@ export default class Form_login extends React.Component{
 
     render(){
         return(
-
             <View style={styles.container}>
                 
-                <FormLabel>Liberar Reserva</FormLabel>
+                <FormLabel>Borrar Usuario</FormLabel>
                 
                 <TextInput  
                 style = {styles.input}
