@@ -7,7 +7,6 @@ import {reserva} from './reserva';
 const fetchURL ='192.168.0.6';
 
 export default class Reservas extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -128,11 +127,6 @@ export default class Reservas extends Component {
                     null
                 }                
             </View>
-
-
-
-
-
         );
     }
 }
