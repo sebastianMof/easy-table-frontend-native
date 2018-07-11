@@ -4,6 +4,8 @@ import { List, ListItem } from 'react-native-elements'
 
 import {mesa} from './mesa';
 
+const fetchURL ='192.168.0.6';
+
 export default class Mesas extends Component {
 
     constructor(props) {
@@ -27,7 +29,7 @@ export default class Mesas extends Component {
         this.setState({    
             mesasLoaded: true
         });
-        fetch('http://192.168.0.6:5555/mesa/', {
+        fetch('http://'+fetchURL+':5555/mesa/', {
             method:'GET',
             headers: {
                 'Content-Type': 'application/json'

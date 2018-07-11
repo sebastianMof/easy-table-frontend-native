@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Button, Alert} from 'react-native';
 
 import Mesas from './Mesas.js';
-import example from './example.js'
+import Reservas from './Reservas.js';
+
 
 export default class App extends React.Component {
 
@@ -14,8 +15,7 @@ export default class App extends React.Component {
                     justifyContent: 'center',
                     marginVertical:50}}>
 
-                    
-                    <Mesas />
+                    <Reservas />
                     
                 
                  </View>
