@@ -4,7 +4,7 @@ import { List, ListItem } from 'react-native-elements'
 
 import {mesa} from './mesa';
 
-const fetchURL ='192.168.43.47';
+const fetchURL ='192.168.0.4';
 
 export default class Mesas extends Component {
 

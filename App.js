@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Button, Alert} from 'react-native';
+import { DrawrNavigator ,StyleSheet, Text, View, ScrollView, Button} from 'react-native';
+import { createDrawerNavigator} from 'react-navigation'
 
 //data
 import Mesas from './Mesas.js';
@@ -16,21 +17,37 @@ import Form_delete_user from './Form_delete_user';
 import Form_delete_reserva from './Form_delete_reserva';
 import Form_delete_mesa from './Form_delete_mesa';
 
-export default class App extends React.Component {
 
+export default class App extends React.Component {
     render() {
         return (
-            <ScrollView>
-                <View style={styles.container}>
-
-                    <Form_delete_mesa />
-                    <Mesas />
-                
-                 </View>
-             </ScrollView>
+            <RootDrawer />
         );
-      }
+    }
+
 }
+
+const RootDrawer = createDrawerNavigator(
+  {
+    Login: Form_login,
+    Registro: Form_registro,
+    Usuarios: Usuarios,
+    BorrarCuenta: Form_delete_user,
+
+    Mesas: Mesas,
+    AñadirMesa: Form_mesa,
+    BorrarMesa: Form_delete_mesa,
+
+    VerReservas: Reservas,
+    ReservarPorMesa: Form_reserva_numero,
+    ReservarPorCapacidad: Form_reserva_capacidad,
+    LiberarReserva: Form_liberar,
+    BorrarReserva: Form_delete_reserva,
+  },
+  {
+    initialRouteName: 'Login',
+  }
+);
 
 const styles = StyleSheet.create({
     container: {
@@ -40,5 +57,5 @@ const styles = StyleSheet.create({
         marginVertical:20,
         paddingLeft:15,
         paddingRight:15
-    },
+    }
 });

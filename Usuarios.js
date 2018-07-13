@@ -4,7 +4,7 @@ import { List, ListItem } from 'react-native-elements'
 
 import {usuario} from './usuario';
 
-const fetchURL ='192.168.43.47';
+const fetchURL ='192.168.0.4';
 
 export default class Usuarios extends Component {
     constructor(props) {
