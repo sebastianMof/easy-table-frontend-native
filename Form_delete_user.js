@@ -61,7 +61,7 @@ export default class Form_login extends React.Component{
         return(
             <View style={styles.container}>
                 
-                <FormLabel>Borrar Usuario</FormLabel>
+                <Text style={styles.title}>Borrar Usuario</Text>
                 
                 <TextInput  
                 style = {styles.input}
@@ -84,12 +84,22 @@ export default class Form_login extends React.Component{
 
         );
     }
+    static navigationOptions = {
+        drawerLabel: 'Borrar Cuenta',
+    };
 }
+
 const styles = StyleSheet.create({
     container: {
         flex:1,
         backgroundColor: '#fff',
-        marginVertical:40
+        marginVertical:40,
+        paddingLeft:15,
+        paddingRight:15
+    },
+    title:{
+        paddingLeft:125,
+        marginBottom: 20,
     },
     input: {
         height: 40,

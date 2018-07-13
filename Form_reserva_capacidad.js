@@ -70,7 +70,7 @@ export default class Form_reserva_numero extends React.Component{
         return(
             <View style={styles.container}>
                 
-                <FormLabel>Reserva por capacidad</FormLabel>
+                <Text style={styles.titleReserva}>Reserva por capacidad</Text>
                 
                 <TextInput  
                 style = {styles.input}
@@ -190,12 +190,22 @@ export default class Form_reserva_numero extends React.Component{
 
         );
     }
+    static navigationOptions = {
+        drawerLabel: 'Reserva por capacidad',
+    };
 }
+
 const styles = StyleSheet.create({
     container: {
         flex:1,
         backgroundColor: '#fff',
-        marginVertical:40
+        marginVertical:40,
+        paddingLeft:15,
+        paddingRight:15
+    },
+    titleReserva:{
+        paddingLeft:90,
+        marginBottom: 20,
     },
     input: {
         height: 40,

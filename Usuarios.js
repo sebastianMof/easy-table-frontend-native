@@ -39,8 +39,6 @@ export default class Usuarios extends Component {
                 },})
                 .then(response => response.json())
                 .then(responseJSON => {
-                    console.log('Respuesta backend', responseJSON);
-                    
                     if (responseJSON.status !== 1) {                    
                             //mensaje de error al cargar usuarios
                         
@@ -90,4 +88,7 @@ export default class Usuarios extends Component {
 
         );
     }
+    static navigationOptions = {
+        drawerLabel: 'Usuarios',
+    };
 }

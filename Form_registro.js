@@ -68,7 +68,7 @@ export default class Form_registro extends React.Component{
         return(
             <View style={styles.container}>
                 
-                <FormLabel>Registro</FormLabel>
+                <Text style={styles.title}>Registro</Text>
                 
                 <TextInput  
                 style = {styles.input}
@@ -110,12 +110,22 @@ export default class Form_registro extends React.Component{
 
         );
     }
+    static navigationOptions = {
+        drawerLabel: 'Registrarse',
+    };
 }
+
 const styles = StyleSheet.create({
     container: {
         flex:1,
         backgroundColor: '#fff',
-        marginVertical:40
+        marginVertical:40,
+        paddingLeft:15,
+        paddingRight:15
+    },
+    title:{
+        paddingLeft:125,
+        marginBottom: 20,
     },
     input: {
         height: 40,
@@ -127,4 +137,3 @@ const styles = StyleSheet.create({
         paddingRight:15
     }
 });
-

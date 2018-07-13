@@ -64,7 +64,7 @@ export default class Form_login extends React.Component{
 
             <View style={styles.container}>
                 
-                <FormLabel>Borrar Reserva</FormLabel>
+                <Text style={styles.title}>Borrar Reserva</Text>
                 
                 <TextInput  
                 style = {styles.input}
@@ -95,12 +95,22 @@ export default class Form_login extends React.Component{
 
         );
     }
+    static navigationOptions = {
+        drawerLabel: 'Borrar Reserva',
+    };
 }
+
 const styles = StyleSheet.create({
     container: {
         flex:1,
         backgroundColor: '#fff',
-        marginVertical:40
+        marginVertical:40,
+        paddingLeft:15,
+        paddingRight:15
+    },
+    title:{
+        paddingLeft:125,
+        marginBottom: 20,
     },
     input: {
         height: 40,

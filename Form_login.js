@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View,FlatList, Image, Button, Alert, AppRegistry, TextInput, TouchableHighLight} from 'react-native';
 import { List, ListItem,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 
-const fetchURL ='192.168.43.47';
-
+const fetchURL ='192.168.0.4';
 
 export default class Form_login extends React.Component{
   
@@ -27,7 +26,6 @@ export default class Form_login extends React.Component{
             "rut" : this.state.rut , 
             "password" : this.state.password 
             };
-
        
         if (rut && password) { 
           fetch('http://'+fetchURL+':5555/usuario/login?' + 'rut='+str_1.rut+'&'+'password='+str_1.password ,{
@@ -61,17 +59,18 @@ export default class Form_login extends React.Component{
         const {tipo_usuario, loginStatus} = this.state;
         return(
             <View style={styles.container}>
+
                 {loginStatus ?
 
                     <View>
-                        <Text>
+                        <Text style={styles.iniciada}>
                         Sesión Iniciada como {this.state.tipo_usuario}
                         </Text>
                     </View>
 
                     :
                     <View>
-                        <FormLabel>Iniciar sesión</FormLabel>
+                        <Text style = {styles.title} >Iniciar sesión</Text>
                         <TextInput  
                         style = {styles.input}
                         placeholder="11111111-1" 
@@ -95,12 +94,27 @@ export default class Form_login extends React.Component{
 
         );
     }
+
+    static navigationOptions = {
+        drawerLabel: 'Login',
+    };
+
 }
+
 const styles = StyleSheet.create({
     container: {
         flex:1,
         backgroundColor: '#fff',
-        marginVertical:40
+        marginVertical:40,
+        paddingLeft:15,
+        paddingRight:15
+    },
+    title:{
+        paddingLeft:125,
+        marginBottom: 20,
+    },
+    iniciada:{
+        paddingLeft:80,
     },
     input: {
         height: 40,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { DrawrNavigator ,StyleSheet, Text, View, ScrollView, Button} from 'react-native';
-import { createDrawerNavigator} from 'react-navigation'
+import { DrawrNavigator ,StyleSheet, Text, View, ScrollView, Button, Image} from 'react-native';
+import { Container, Content, Icon, Header, Body } from 'native-base'
+import { createDrawerNavigator, StackNavigator, DrawerItems, SafeAreaView } from 'react-navigation'
 
 //data
 import Mesas from './Mesas.js';
@@ -22,6 +23,8 @@ export default class App extends React.Component {
     render() {
         return (
             <RootDrawer />
+
+
         );
     }
 
@@ -46,16 +49,20 @@ const RootDrawer = createDrawerNavigator(
   },
   {
     initialRouteName: 'Login',
+    title: 'Main',
+    drawerPosition: 'left',
+
   }
 );
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',  
-        marginBottom: 20,
-        marginVertical:20,
-        paddingLeft:15,
-        paddingRight:15
+    drawerHeader: {
+        height: 200,
+        backgroundColor: 'white'
+    },
+    drawerImage: {
+        height: 150,
+        width: 150,
+        borderRadius: 75
     }
 });

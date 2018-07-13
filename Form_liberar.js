@@ -64,7 +64,7 @@ export default class Form_liberar extends React.Component{
         return(
             <View style={styles.container}>
                 
-                <FormLabel>Liberar Reserva</FormLabel>
+                <Text style={styles.title}>Liberar Reserva</Text>
                 
                 <TextInput  
                 style = {styles.input}
@@ -94,12 +94,22 @@ export default class Form_liberar extends React.Component{
 
         );
     }
+    static navigationOptions = {
+        drawerLabel: 'Liberar Reserva',
+    };
 }
+
 const styles = StyleSheet.create({
     container: {
         flex:1,
         backgroundColor: '#fff',
-        marginVertical:40
+        marginVertical:40,
+        paddingLeft:15,
+        paddingRight:15
+    },
+    title:{
+        paddingLeft:125,
+        marginBottom: 20,
     },
     input: {
         height: 40,

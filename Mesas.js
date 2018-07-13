@@ -80,5 +80,9 @@ export default class Mesas extends Component {
             </View>
         );
     }
+    
+    static navigationOptions = {
+        drawerLabel: 'Mesas',
+    };
 }
 

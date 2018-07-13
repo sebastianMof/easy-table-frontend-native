@@ -104,7 +104,10 @@ export default class Reservas extends Component {
                     onPress={ this.loadReservas}
                     title="Ver Reservas"
                 />
-                 <Button
+
+
+
+                <Button
                     onPress={ this.loadReservasActivas}
                     title="Ver Reservas Activas"
                 />
@@ -125,4 +128,9 @@ export default class Reservas extends Component {
             </View>
         );
     }
+
+    static navigationOptions = {
+        drawerLabel: 'Reservas',
+    };
+
 }
