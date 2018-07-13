@@ -4,7 +4,7 @@ import { List, ListItem } from 'react-native-elements'
 
 import {reserva} from './reserva';
 
-const fetchURL ='192.168.0.4';
+const fetchURL ='192.168.43.47';
 
 export default class Reservas extends Component {
     constructor(props) {
@@ -106,7 +106,6 @@ export default class Reservas extends Component {
                 />
 
 
-
                 <Button
                     onPress={ this.loadReservasActivas}
                     title="Ver Reservas Activas"
@@ -115,6 +114,7 @@ export default class Reservas extends Component {
                 { reservasLoaded ? 
                     this.state.reservas.map((reserva, key)=>(
                      <Text key={key} > 
+                        {'\n'}
                         ID: {reserva.id}
                         NUMERO MESA: {reserva.mesaNumero}
                         USUARIO: {reserva.usuarioRut}

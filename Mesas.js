@@ -4,7 +4,7 @@ import { List, ListItem } from 'react-native-elements'
 
 import {mesa} from './mesa';
 
-const fetchURL ='192.168.0.4';
+const fetchURL ='192.168.43.47';
 
 export default class Mesas extends Component {
 
@@ -70,6 +70,7 @@ export default class Mesas extends Component {
                 { mesasLoaded ? 
                     this.state.mesas.map((mesa, key)=>(
                      <Text key={key} > 
+                        {'\n'}
                         NUMERO { mesa.numero } 
                         Capacidad { mesa.capacidad }
                     </Text>

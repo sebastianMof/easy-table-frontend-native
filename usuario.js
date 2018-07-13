@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
 export class usuario extends Component {
     constructor(props) {

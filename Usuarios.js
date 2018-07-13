@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View,FlatList, Image, Button, Alert} from 'react-native';
 import { List, ListItem } from 'react-native-elements'
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
 import {usuario} from './usuario';
 
-const fetchURL ='192.168.0.4';
+const fetchURL ='192.168.43.47';
 
 export default class Usuarios extends Component {
     constructor(props) {
@@ -71,8 +72,9 @@ export default class Usuarios extends Component {
                 { usuariosLoaded ? 
                     this.state.usuarios.map((usuario, key)=>(
                      <Text key={key} > 
+                        {'\n'}
                         RUT: {usuario.rut} 
-                        NOMBRE: {usuario.nombre} 
+                        NOMBRE: {usuario.nombre}
                         APELLIDO: {usuario.apellido} 
                         EMAIL: {usuario.email} 
                         TIPO: {usuario.tipo_usuario}
